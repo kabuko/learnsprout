@@ -1,16 +1,38 @@
 module LearnSprout
   class Student
-    include LearnSprout::Connection
 
     attr_accessor :student_id,
-                  :name
+                  :last_name,
+                  :grade,
+                  :address,
+                  :school_id,
+                  :number,
+                  :phone,
+                  :birthday,
+                  :first_name,
+                  :time_updated,
+                  :middle_name,
+                  :gender,
+                  :exit_date,
+                  :entry_date
 
     def initialize(attrs={})
         @client = attrs["client"]
         @org_id = attrs["org_id"]
         @student_id = attrs["id"]
-        @name = attrs["name"]
-        #TODO: Other attrs
+        @last_name = attrs["last_name"]
+        @grade = attrs["grade"]
+        @address = Address.new(attrs["address"])
+        @school_id = attrs["school"]["id"]
+        @number = attrs["number"]
+        @phone = Phone.new(attrs["phone"])
+        @birthday = attrs["birthday"] && Date.parse(attrs["birthday"])
+        @first_name = attrs["first_name"]
+        @time_updated = attrs["time_updated"]
+        @middle_name = attrs["middle_name"]
+        @gender = attrs["gender"]
+        @exit_date = attrs["exit_date"] && Date.parse(attrs["exit_date"])
+        @entry_date = attrs["entry_date"] && Date.parse(attrs["entry_date"])
     end
   end
 end 

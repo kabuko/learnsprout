@@ -54,3 +54,10 @@ Feature: Get Terms
         * I have entered my api key as fcb8534c-e4ee-4e02-8b22-9328db1dac18
         * When I request the current term for an org with id 4fdaeaa92eea44952ab9e520 and a school with id 4fdac86eaa411b22c9a3fd2e
         * I should get the current term
+
+    Scenario: Sections for term
+        * I have entered my api key as fcb8534c-e4ee-4e02-8b22-9328db1dac18
+        * I request an org with id 4fdaeaa92eea44952ab9e520
+        * I request a term with id 4fdb21cb91e4e64a06000008 for that org
+        * When I request the sections for that term
+        * I should get a list of 80 sections

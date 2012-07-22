@@ -1,6 +1,5 @@
 module LearnSprout
   class Org
-    include LearnSprout::Connection
 
     attr_accessor :org_id,
                   :name

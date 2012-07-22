@@ -1,17 +1,17 @@
 module LearnSprout
   class Teacher
-    include LearnSprout::Connection
 
     attr_accessor :teacher_id,
                   :first_name,
                   :middle_name,
                   :last_name,
                   :title,
+                  :address,
+                  :school_id,
                   :number,
+                  :phone,
                   :time_updated,
                   :email
-
-    #TODO Other fields
 
     def initialize(attrs={})
         @client = attrs["client"]
@@ -21,10 +21,16 @@ module LearnSprout
         @middle_name = attrs["middle_name"]
         @last_name = attrs["last_name"]
         @title = attrs["title"]
+        @address = attrs["address"] && Address.new(attrs["address"])
+        @school_id = attrs["school"] && attrs["school"]["id"]
         @number = attrs["number"]
+        @phone = attrs["phone"] && Phone.new(attrs["phone"])
         @time_updated = attrs["time_updated"]
         @email = attrs["email"]
-        #TODO: Other attrs
+    end
+
+    def school
+        @school_id && @client.school(@org_id, @school_id)
     end
   end
 end 

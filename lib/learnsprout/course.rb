@@ -1,6 +1,5 @@
 module LearnSprout
   class Course
-    include LearnSprout::Connection
 
     attr_accessor :course_id,
                   :school_id,

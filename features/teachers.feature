@@ -42,3 +42,10 @@ Feature: Get Teachers
         * I request an org with id 4fdaeaa92eea44952ab9e520
         * When I request a teacher with id 4fdb1fceaa411b22c9a49d54 for that org
         * I should get a teacher with id 4fdb1fceaa411b22c9a49d54
+
+    Scenario: School for teacher
+        * I have entered my api key as fcb8534c-e4ee-4e02-8b22-9328db1dac18
+        * I request an org with id 4fdaeaa92eea44952ab9e520
+        * I request a teacher with id 4fdb1fceaa411b22c9a49d54 for that org
+        * When I request the school for that teacher
+        * I should get a school with id 4fdac86faa411b22c9a3fd2f

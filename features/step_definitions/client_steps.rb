@@ -135,6 +135,26 @@ Given /^(?:When )?I request a section with id ([a-f0-9]{24}) for that org$/ do |
     @section = @org.section(section_id)
 end
 
+Given /^(?:When )?I request the term for that section$/ do
+    @term = @section.term
+end
+
+Given /^(?:When )?I request the students for that section$/ do
+    @students = @section.students
+end
+
+Given /^(?:When )?I request the teacher for that section$/ do
+    @teacher = @section.teacher
+end
+
+Given /^(?:When )?I request the school for that section$/ do
+    @school = @section.school
+end
+
+Given /^(?:When )?I request the course for that section$/ do
+    @course = @section.course
+end
+
 # Teachers
 
 Given /^When I request teachers for an organization with id ([a-f0-9]{24})$/ do |org_id|
@@ -171,6 +191,10 @@ end
 
 Given /^(?:When )?I request a teacher with id ([a-f0-9]{24}) for that org$/ do |teacher_id|
     @teacher = @org.teacher(teacher_id)
+end
+
+Given /^(?:When )?I request the school for that teacher$/ do
+    @school = @teacher.school
 end
 
 # Terms
@@ -222,6 +246,10 @@ end
 
 Given /^(?:When )?I request the current term for an org with id ([a-f0-9]{24}) and a school with id ([a-f0-9]{24})$/ do |org_id, school_id|
     @term = @client.current_term(org_id, school_id)
+end
+
+Given /^(?:When )?I request the sections for that term$/ do
+    @sections = @term.sections
 end
 
 # Courses

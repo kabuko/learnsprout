@@ -1,13 +1,13 @@
 module LearnSprout
   class School
-    include LearnSprout::Connection
 
     attr_accessor :school_id,
                   :name,
                   :number,
                   :nces,
                   :phone,
-                  :address
+                  :address,
+                  :time_updated
 
     def initialize(attrs={})
         @client = attrs["client"]
@@ -18,6 +18,7 @@ module LearnSprout
         @nces = Nces.new(attrs["nces"])
         @phone = Phone.new(attrs["phone"])
         @address = Address.new(attrs["address"])
+        @time_updated = attrs["time_updated"]
     end
 
     #TODO Add org method?
