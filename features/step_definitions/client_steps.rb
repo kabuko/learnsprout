@@ -10,6 +10,16 @@ end
 After do
 end
 
+# Miscellaneous
+
+Given /^I should get a page of (\d+) items$/ do |count|
+    @page.items.count.should == Integer(count)
+end
+
+Given /^(?:When )?I request the next page$/ do
+    @page = @page.next
+end
+
 # Client
 
 Given /^I have entered my api key as ([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$/ do |api_key|
@@ -18,6 +28,10 @@ end
 
 Given /^(?:When )?I request orgs$/ do
     @orgs = @client.orgs
+end
+
+Given /^I should get a list of (\d+) orgs$/ do |count|
+    @orgs.count.should == Integer(count)
 end
 
 Given /^I should get the organization with id ([a-f0-9]{24})$/ do |org_id|
@@ -36,11 +50,7 @@ end
 # Schools
 
 Given /^(?:When )?I request schools for an organization with id ([a-f0-9]{24})$/ do |org_id|
-    @schools = @client.schools(org_id)
-end
-
-Given /^I should get a list of (\d+) schools$/ do |count|
-    @schools.count.should == Integer(count)
+    @page = @client.schools(org_id)
 end
 
 Given /^(?:When )?I request a school with id ([a-f0-9]{24}) for that org$/ do |school_id|
@@ -52,7 +62,7 @@ Given /^I should get a school with id ([a-f0-9]{24})$/ do |school_id|
 end
 
 Given /^(?:When )?I request schools for that org$/ do
-    @schools = @org.schools
+    @page = @org.schools
 end
 
 Given /^(?:When )?I request a school with id ([a-f0-9]{24}) for an org with id ([a-f0-9]{24})$/ do |school_id, org_id|
@@ -62,7 +72,7 @@ end
 # Students
 
 Given /^(?:When )?I request students for an organization with id ([a-f0-9]{24})$/ do |org_id|
-    @students = @client.students(org_id)
+    @page = @client.students(org_id)
 end
 
 Given /^I should get a list of (\d+) students$/ do |count|
@@ -70,7 +80,7 @@ Given /^I should get a list of (\d+) students$/ do |count|
 end
 
 Given /^(?:When )?I request students for that org$/ do
-    @students = @org.students
+    @page = @org.students
 end
 
 Given /^I should get a student with id ([a-f0-9]{24})$/ do |student_id|
@@ -90,17 +100,17 @@ Given /^(?:When )?I request a student with id ([a-f0-9]{24}) for that org$/ do |
 end
 
 Given /^(?:When )?I request students for an org with id ([a-f0-9]{24}) and a school with id ([a-f0-9]{24})$/ do |org_id, school_id|
-    @students = @client.students(org_id, school_id)
+    @page = @client.students(org_id, school_id)
 end
 
 Given /^(?:When )?I request students for that school$/ do
-    @students = @school.students
+    @page = @school.students
 end
 
 # Sections
 
 Given /^When I request sections for an organization with id ([a-f0-9]{24})$/ do |org_id|
-    @sections = @client.sections(org_id)
+    @page = @client.sections(org_id)
 end
 
 Given /^I should get a list of (\d+) sections$/ do |count|
@@ -108,15 +118,15 @@ Given /^I should get a list of (\d+) sections$/ do |count|
 end
 
 Given /^(?:When )?I request sections for that org$/ do
-    @sections = @org.sections
+    @page = @org.sections
 end
 
 Given /^(?:When )?I request sections for an org with id ([a-f0-9]{24}) and a school with id ([a-f0-9]{24})$/ do |org_id, school_id|
-    @sections = @client.sections(org_id, :school_id => school_id)
+    @page = @client.sections(org_id, :school_id => school_id)
 end
 
 Given /^(?:When )?I request sections for that school$/ do
-    @sections = @school.sections
+    @page = @school.sections
 end
 
 Given /^(?:When )?I request a section with id ([a-f0-9]{24}) for that school$/ do |section_id|
@@ -158,23 +168,19 @@ end
 # Teachers
 
 Given /^When I request teachers for an organization with id ([a-f0-9]{24})$/ do |org_id|
-    @teachers = @client.teachers(org_id)
-end
-
-Given /^I should get a list of (\d+) teachers$/ do |count|
-    @teachers.count.should == Integer(count)
+    @page = @client.teachers(org_id)
 end
 
 Given /^(?:When )?I request teachers for that org$/ do
-    @teachers = @org.teachers
+    @page = @org.teachers
 end
 
 Given /^(?:When )?I request teachers for an org with id ([a-f0-9]{24}) and a school with id ([a-f0-9]{24})$/ do |org_id, school_id|
-    @teachers = @client.teachers(org_id, :school_id => school_id)
+    @page = @client.teachers(org_id, :school_id => school_id)
 end
 
 Given /^(?:When )?I request teachers for that school$/ do
-    @teachers = @school.teachers
+    @page = @school.teachers
 end
 
 Given /^(?:When )?I request a teacher with id ([a-f0-9]{24}) for that school$/ do |teacher_id|
@@ -200,23 +206,19 @@ end
 # Terms
 
 Given /^When I request terms for an organization with id ([a-f0-9]{24})$/ do |org_id|
-    @terms = @client.terms(org_id)
-end
-
-Given /^I should get a list of (\d+) terms$/ do |count|
-    @terms.count.should == Integer(count)
+    @page = @client.terms(org_id)
 end
 
 Given /^(?:When )?I request terms for that org$/ do
-    @terms = @org.terms
+    @page = @org.terms
 end
 
 Given /^(?:When )?I request terms for an org with id ([a-f0-9]{24}) and a school with id ([a-f0-9]{24})$/ do |org_id, school_id|
-    @terms = @client.terms(org_id, :school_id => school_id)
+    @page = @client.terms(org_id, :school_id => school_id)
 end
 
 Given /^(?:When )?I request terms for that school$/ do
-    @terms = @school.terms
+    @page = @school.terms
 end
 
 Given /^(?:When )?I request a term with id ([a-f0-9]{24}) for that school$/ do |term_id|
@@ -255,23 +257,19 @@ end
 # Courses
 
 Given /^When I request courses for an organization with id ([a-f0-9]{24})$/ do |org_id|
-    @courses = @client.courses(org_id)
-end
-
-Given /^I should get a list of (\d+) courses$/ do |count|
-    @courses.count.should == Integer(count)
+    @page = @client.courses(org_id)
 end
 
 Given /^(?:When )?I request courses for that org$/ do
-    @courses = @org.courses
+    @page = @org.courses
 end
 
 Given /^(?:When )?I request courses for an org with id ([a-f0-9]{24}) and a school with id ([a-f0-9]{24})$/ do |org_id, school_id|
-    @courses = @client.courses(org_id, :school_id => school_id)
+    @page = @client.courses(org_id, :school_id => school_id)
 end
 
 Given /^(?:When )?I request courses for that school$/ do
-    @courses = @school.courses
+    @page = @school.courses
 end
 
 Given /^(?:When )?I request a course with id ([a-f0-9]{24}) for that school$/ do |course_id|

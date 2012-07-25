@@ -5,13 +5,13 @@ Feature: Get Schools
     Scenario: List schools by org id
         * I have entered my api key as fcb8534c-e4ee-4e02-8b22-9328db1dac18
         * When I request schools for an organization with id 4fdaeaa92eea44952ab9e520
-        * I should get a list of 7 schools
+        * I should get a page of 7 items
 
     Scenario: List schools by org
         * I have entered my api key as fcb8534c-e4ee-4e02-8b22-9328db1dac18
         * I request an org with id 4fdaeaa92eea44952ab9e520
         * When I request schools for that org
-        * I should get a list of 7 schools
+        * I should get a page of 7 items
 
     Scenario: School by org id and school id
         * I have entered my api key as fcb8534c-e4ee-4e02-8b22-9328db1dac18

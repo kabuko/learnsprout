@@ -5,25 +5,25 @@ Feature: Get Terms
     Scenario: List terms by org id
         * I have entered my api key as fcb8534c-e4ee-4e02-8b22-9328db1dac18
         * When I request terms for an organization with id 4fdaeaa92eea44952ab9e520
-        * I should get a list of 20 terms
+        * I should get a page of 20 items
 
     Scenario: List terms by org
         * I have entered my api key as fcb8534c-e4ee-4e02-8b22-9328db1dac18
         * I request an org with id 4fdaeaa92eea44952ab9e520
         * When I request terms for that org
-        * I should get a list of 20 terms
+        * I should get a page of 20 items
 
     Scenario: List terms by org id and school id
         * I have entered my api key as fcb8534c-e4ee-4e02-8b22-9328db1dac18
         * When I request terms for an org with id 4fdaeaa92eea44952ab9e520 and a school with id 4fdac86eaa411b22c9a3fd2e
-        * I should get a list of 1 terms
+        * I should get a page of 1 items
 
     Scenario: List terms by school
         * I have entered my api key as fcb8534c-e4ee-4e02-8b22-9328db1dac18
         * I request an org with id 4fdaeaa92eea44952ab9e520
         * I request a school with id 4fdac86eaa411b22c9a3fd2e for that org
         * When I request terms for that school
-        * I should get a list of 1 terms
+        * I should get a page of 1 items
 
     Scenario: Term by school and term id
         * I have entered my api key as fcb8534c-e4ee-4e02-8b22-9328db1dac18

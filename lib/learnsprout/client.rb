@@ -26,7 +26,7 @@ module LearnSprout
 
     def schools(org_id)
       schools = get("org/#{org_id}/school?apikey=#{@api_key}")
-      instances_from_schools(org_id, schools)
+      Page.new("org/#{org_id}/school?apikey=#{@api_key}", School, :client => self, :org_id => org_id)
     end
 
     def student(org_id, student_id)
@@ -39,11 +39,11 @@ module LearnSprout
     def students(org_id, options = {})
       school_id = options[:school_id]
       if (school_id)
-        students = get("org/#{org_id}/school/#{school_id}/student?apikey=#{@api_key}")
+        url = "org/#{org_id}/school/#{school_id}/student?apikey=#{@api_key}"
       else
-        students = get("org/#{org_id}/student?apikey=#{@api_key}")
+        url = "org/#{org_id}/student?apikey=#{@api_key}"
       end
-      instances_from_students(org_id, students)
+      Page.new(url, Student, :org_id => org_id, :client => self)
     end
 
     def section(org_id, section_id)
@@ -61,8 +61,7 @@ module LearnSprout
       else
         url = "org/#{org_id}/section?apikey=#{@api_key}"
       end
-      sections = get(url)
-      instances_from_sections(org_id, sections)
+      Page.new(url, Section, :org_id => org_id, :client => self)
     end
 
     def teacher(org_id, teacher_id)
@@ -80,8 +79,7 @@ module LearnSprout
       else
         url = "org/#{org_id}/teacher?apikey=#{@api_key}"
       end
-      teachers = get(url)
-      instances_from_teachers(org_id, teachers)
+      Page.new(url, Teacher, :org_id => org_id, :client => self)
     end
 
     def term(org_id, term_id)
@@ -99,8 +97,7 @@ module LearnSprout
       else
         url = "org/#{org_id}/term?apikey=#{@api_key}"
       end
-      terms = get(url)
-      instances_from_terms(org_id, terms)
+      Page.new(url, Term, :org_id => org_id, :client => self)
     end
 
     def current_term(org_id, school_id)
@@ -126,8 +123,7 @@ module LearnSprout
       else
         url = "org/#{org_id}/course?apikey=#{@api_key}"
       end
-      courses = get(url)
-      instances_from_courses(org_id, courses)
+      Page.new(url, Course, :org_id => org_id, :client => self)
     end
 
     private
@@ -138,72 +134,6 @@ module LearnSprout
           org_instances << Org.new(org)
         end
         return org_instances
-      end
-
-      def instances_from_schools(org_id, schools)
-        school_instances = []
-        #TODO Next
-        schools["data"].each do |school|
-          school["client"] = self
-          school["org_id"] = org_id
-          school_instances << School.new(school)
-        end
-        return school_instances
-      end
-
-      def instances_from_students(org_id, students)
-        student_instances = []
-        #TODO Next
-        students["data"].each do |student|
-          student["client"] = self
-          student["org_id"] = org_id
-          student_instances << Student.new(student)
-        end
-        return student_instances
-      end
-
-      def instances_from_sections(org_id, sections)
-        section_instances = []
-        #TODO Next
-        sections["data"].each do |section|
-          section["client"] = self
-          section["org_id"] = org_id
-          section_instances << Section.new(section)
-        end
-        return section_instances
-      end
-
-      def instances_from_teachers(org_id, teachers)
-        teacher_instances = []
-        #TODO Next
-        teachers["data"].each do |teacher|
-          teacher["client"] = self
-          teacher["org_id"] = org_id
-          teacher_instances << Teacher.new(teacher)
-        end
-        return teacher_instances
-      end
-
-      def instances_from_terms(org_id, terms)
-        term_instances = []
-        #TODO Next
-        terms["data"].each do |term|
-          term["client"] = self
-          term["org_id"] = org_id
-          term_instances << Term.new(term)
-        end
-        return term_instances
-      end
-
-      def instances_from_courses(org_id, courses)
-        course_instances = []
-        #TODO Next
-        courses["data"].each do |course|
-          course["client"] = self
-          course["org_id"] = org_id
-          course_instances << Course.new(course)
-        end
-        return course_instances
       end
   end
 end

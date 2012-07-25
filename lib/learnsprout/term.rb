@@ -25,6 +25,10 @@ module LearnSprout
         end
     end
 
+    # Gets the sections for this term. This method is extremely slow as it retrieves a list of IDs
+    # for associated terms then performs a separate request for each term for each ID.
+    #
+    # TODO Optimize somehow, perhaps by lazy loading
     def sections
       temp_sections = []
       if @section_ids.count > 0

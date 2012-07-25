@@ -5,25 +5,25 @@ Feature: Get Teachers
     Scenario: List teachers by org id
         * I have entered my api key as fcb8534c-e4ee-4e02-8b22-9328db1dac18
         * When I request teachers for an organization with id 4fdaeaa92eea44952ab9e520
-        * I should get a list of 50 teachers
+        * I should get a page of 50 items
 
     Scenario: List teachers by org
         * I have entered my api key as fcb8534c-e4ee-4e02-8b22-9328db1dac18
         * I request an org with id 4fdaeaa92eea44952ab9e520
         * When I request teachers for that org
-        * I should get a list of 50 teachers
+        * I should get a page of 50 items
 
     Scenario: List teachers by org id and school id
         * I have entered my api key as fcb8534c-e4ee-4e02-8b22-9328db1dac18
         * When I request teachers for an org with id 4fdaeaa92eea44952ab9e520 and a school with id 4fdac86eaa411b22c9a3fd2e
-        * I should get a list of 28 teachers
+        * I should get a page of 28 items
 
     Scenario: List teachers by school
         * I have entered my api key as fcb8534c-e4ee-4e02-8b22-9328db1dac18
         * I request an org with id 4fdaeaa92eea44952ab9e520
         * I request a school with id 4fdac86eaa411b22c9a3fd2e for that org
         * When I request teachers for that school
-        * I should get a list of 28 teachers
+        * I should get a page of 28 items
 
     Scenario: Teacher by school and teacher id
         * I have entered my api key as fcb8534c-e4ee-4e02-8b22-9328db1dac18
