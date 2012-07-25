@@ -24,7 +24,7 @@ module LearnSprout def self.endpoint=(endpoint)
 
   self.debug = false
   self.user_agent = "LearnSprout Ruby Wrapper"
-  self.endpoint = "https://beta.api.learnsprout.com/"
+  self.endpoint = "https://v1.api.learnsprout.com/"
 end
 
 require 'faraday'
