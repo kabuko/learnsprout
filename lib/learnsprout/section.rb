@@ -21,6 +21,7 @@ module LearnSprout
         @school_id = attrs["school"] && attrs["school"]["id"]
         @course_id = attrs["course"] && attrs["course"]["id"]
         @time_updated = attrs["time_updated"]
+        @updated_at = Time.at(@time_updated)
         @student_ids = []
         if attrs["students"]
             attrs["students"].each do |student|

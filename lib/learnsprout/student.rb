@@ -11,6 +11,7 @@ module LearnSprout
                   :birthday,
                   :first_name,
                   :time_updated,
+                  :updated_at,
                   :middle_name,
                   :gender,
                   :exit_date,
@@ -29,6 +30,7 @@ module LearnSprout
         @birthday = attrs["birthday"] && Date.parse(attrs["birthday"])
         @first_name = attrs["first_name"]
         @time_updated = attrs["time_updated"]
+        @updated_at = Time.at(@time_updated)
         @middle_name = attrs["middle_name"]
         @gender = attrs["gender"]
         @exit_date = attrs["exit_date"] && Date.parse(attrs["exit_date"])

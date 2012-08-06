@@ -6,7 +6,8 @@ module LearnSprout
                   :end_date,
                   :start_date,
                   :school_id,
-                  :time_updated
+                  :time_updated,
+                  :updated_at
 
     def initialize(attrs={})
         @client = attrs["client"]
@@ -17,6 +18,7 @@ module LearnSprout
         @start_date = attrs["start_date"] && Date.parse(attrs["start_date"])
         @school_id = attrs["school_id"]
         @time_updated = attrs["time_updated"]
+        @updated_at = Time.at(@time_updated)
         @section_ids = []
         if attrs["sections"]
             attrs["sections"].each do |section|

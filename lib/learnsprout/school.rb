@@ -7,7 +7,8 @@ module LearnSprout
                   :nces,
                   :phone,
                   :address,
-                  :time_updated
+                  :time_updated,
+                  :updated_at
 
     def initialize(attrs={})
         @client = attrs["client"]
@@ -19,6 +20,7 @@ module LearnSprout
         @phone = Phone.new(attrs["phone"])
         @address = Address.new(attrs["address"])
         @time_updated = attrs["time_updated"]
+        @updated_at = Time.at(@time_updated)
     end
 
     #TODO Add org method?
