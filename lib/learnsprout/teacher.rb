@@ -1,7 +1,7 @@
 module LearnSprout
   class Teacher
 
-    attr_accessor :teacher_id,
+    attr_accessor :id, :teacher_id,
                   :first_name,
                   :middle_name,
                   :last_name,
@@ -16,7 +16,7 @@ module LearnSprout
     def initialize(attrs={})
         @client = attrs["client"]
         @org_id = attrs["org_id"]
-        @teacher_id = attrs["id"]
+        self.id = @teacher_id = attrs["id"]
         @first_name = attrs["first_name"]
         @middle_name = attrs["middle_name"]
         @last_name = attrs["last_name"]

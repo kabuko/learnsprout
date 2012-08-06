@@ -1,7 +1,7 @@
 module LearnSprout
   class Section
 
-    attr_accessor :term_id,
+    attr_accessor :id, :term_id,
                   :section_id,
                   :number,
                   :room,
@@ -13,7 +13,7 @@ module LearnSprout
     def initialize(attrs={})
         @client = attrs["client"]
         @org_id = attrs["org_id"]
-        @section_id = attrs["id"]
+        self.id = @section_id = attrs["id"]
         @number = attrs["number"]
         @room = attrs["room"]
         @term_id = attrs["term"] && attrs["term"]["id"]

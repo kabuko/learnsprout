@@ -1,7 +1,7 @@
 module LearnSprout
   class School
 
-    attr_accessor :school_id,
+    attr_accessor :id, :school_id,
                   :name,
                   :number,
                   :nces,
@@ -12,7 +12,7 @@ module LearnSprout
     def initialize(attrs={})
         @client = attrs["client"]
         @org_id = attrs["org_id"]
-        @school_id = attrs["id"]
+        self.id = @school_id = attrs["id"]
         @name = attrs["name"]
         @number = attrs["number"]
         @nces = Nces.new(attrs["nces"])

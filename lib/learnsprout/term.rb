@@ -1,7 +1,7 @@
 module LearnSprout
   class Term
 
-    attr_accessor :term_id,
+    attr_accessor :id, :term_id,
                   :name,
                   :end_date,
                   :start_date,
@@ -11,7 +11,7 @@ module LearnSprout
     def initialize(attrs={})
         @client = attrs["client"]
         @org_id = attrs["org_id"]
-        @term_id = attrs["id"]
+        self.id = @term_id = attrs["id"]
         @name = attrs["name"]
         @end_date = attrs["end_date"] && Date.parse(attrs["end_date"])
         @start_date = attrs["start_date"] && Date.parse(attrs["start_date"])
