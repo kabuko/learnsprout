@@ -7,7 +7,8 @@ module LearnSprout
                   :start_date,
                   :school_id,
                   :time_updated,
-                  :updated_at
+                  :updated_at,
+                  :section_ids
 
     def initialize(attrs={})
       @client = attrs["client"]
@@ -21,24 +22,18 @@ module LearnSprout
       @updated_at = Time.at(@time_updated)
       @section_ids = []
       if attrs["sections"]
-        attrs["sections"].each do |section|
-          @section_ids.push section["id"]
-        end
+        @section_ids = attrs["sections"].collect { |section| section["id"] }
       end
     end
 
-    # Gets the sections for this term. This method is extremely slow as it retrieves a list of IDs
-    # for associated terms then performs a separate request for each term for each ID.
-    #
-    # TODO Optimize somehow, perhaps by lazy loading
     def sections
-      temp_sections = []
-      if @section_ids.count > 0
-        @section_ids.each do |section_id|
-          temp_sections.push @client.section(@org_id, section_id)
-        end
+      return @sections if @sections
+      return [] if @section_ids.empty?
+      @sections = []
+      @client.sections(@org_id, school_id: @school_id).each do |section|
+        @sections.push section# if @section_ids.include?(section.id)
       end
-      return temp_sections
+      return @sections
     end
   end
 end

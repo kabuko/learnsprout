@@ -8,7 +8,8 @@ module LearnSprout
                   :time_updated,
                   :teacher_id,
                   :school_id,
-                  :course_id
+                  :course_id,
+                  :student_ids
 
     def initialize(attrs={})
       @client = attrs["client"]
