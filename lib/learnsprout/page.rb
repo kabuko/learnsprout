@@ -36,6 +36,12 @@ module LearnSprout
       @items && @items.any?
     end
 
+    def each(&block)
+      return unless self.any?
+      self.items.map(&block)
+      return self.next.each(&block)
+    end
+
     def next
       return Page.new(@nextUrl, @type, @extras)
     end
