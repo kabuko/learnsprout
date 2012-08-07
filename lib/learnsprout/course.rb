@@ -9,18 +9,18 @@ module LearnSprout
                   :updated_at
 
     def initialize(attrs={})
-        @client = attrs["client"]
-        @org_id = attrs["org_id"]
-        self.id = @course_id = attrs["id"]
-        @name = attrs["name"]
-        @number = attrs["number"]
-        @time_updated = attrs["time_updated"]
-        @updated_at = Time.at(@time_updated)
-        @school_id = attrs["school"]["id"]
+      @client = attrs["client"]
+      @org_id = attrs["org_id"]
+      self.id = @course_id = attrs["id"]
+      @name = attrs["name"]
+      @number = attrs["number"]
+      @time_updated = attrs["time_updated"]
+      @updated_at = Time.at(@time_updated)
+      @school_id = attrs["school"]["id"]
     end
 
     def school
-        @client.school(@org_id, @school_id)
+      @client.school(@org_id, @school_id)
     end
   end
 end 

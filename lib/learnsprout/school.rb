@@ -11,22 +11,22 @@ module LearnSprout
                   :updated_at
 
     def initialize(attrs={})
-        @client = attrs["client"]
-        @org_id = attrs["org_id"]
-        self.id = @school_id = attrs["id"]
-        @name = attrs["name"]
-        @number = attrs["number"]
-        @nces = Nces.new(attrs["nces"])
-        @phone = Phone.new(attrs["phone"])
-        @address = Address.new(attrs["address"])
-        @time_updated = attrs["time_updated"]
-        @updated_at = Time.at(@time_updated)
+      @client = attrs["client"]
+      @org_id = attrs["org_id"]
+      self.id = @school_id = attrs["id"]
+      @name = attrs["name"]
+      @number = attrs["number"]
+      @nces = Nces.new(attrs["nces"])
+      @phone = Phone.new(attrs["phone"])
+      @address = Address.new(attrs["address"])
+      @time_updated = attrs["time_updated"]
+      @updated_at = Time.at(@time_updated)
     end
 
     #TODO Add org method?
 
     def student(student_id)
-        @client.student(@org_id, student_id)
+      @client.student(@org_id, student_id)
     end
 
     def students
@@ -34,7 +34,7 @@ module LearnSprout
     end
 
     def section(section_id)
-        @client.section(@org_id, section_id)
+      @client.section(@org_id, section_id)
     end
 
     def sections
@@ -42,7 +42,7 @@ module LearnSprout
     end
 
     def teacher(teacher_id)
-        @client.teacher(@org_id, teacher_id)
+      @client.teacher(@org_id, teacher_id)
     end
 
     def teachers
@@ -50,7 +50,7 @@ module LearnSprout
     end
 
     def term(term_id)
-        @client.term(@org_id, term_id)
+      @client.term(@org_id, term_id)
     end
 
     def terms
@@ -62,7 +62,7 @@ module LearnSprout
     end
 
     def course(course_id)
-        @client.course(@org_id, course_id)
+      @client.course(@org_id, course_id)
     end
 
     def courses
