@@ -15,7 +15,7 @@ module LearnSprout
       @name = attrs["name"]
       @number = attrs["number"]
       @time_updated = attrs["time_updated"]
-      @updated_at = Time.at(@time_updated)
+      @updated_at = Time.at(@time_updated) if @time_updated
       @school_id = attrs["school"]["id"]
     end
 

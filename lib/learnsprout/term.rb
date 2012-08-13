@@ -19,7 +19,7 @@ module LearnSprout
       @start_date = attrs["start_date"] && Date.parse(attrs["start_date"])
       @school_id = attrs["school_id"]
       @time_updated = attrs["time_updated"]
-      @updated_at = Time.at(@time_updated)
+      @updated_at = Time.at(@time_updated) if @time_updated
       @section_ids = []
       if attrs["sections"]
         @section_ids = attrs["sections"].collect { |section| section["id"] }

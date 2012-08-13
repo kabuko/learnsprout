@@ -27,7 +27,7 @@ module LearnSprout
       @number = attrs["number"]
       @phone = attrs["phone"] && Phone.new(attrs["phone"])
       @time_updated = attrs["time_updated"]
-      @updated_at = Time.at(@time_updated)
+      @updated_at = Time.at(@time_updated) if @time_updated
       @email = attrs["email"]
     end
 
