@@ -23,12 +23,7 @@ module LearnSprout
       @course_id = attrs["course"] && attrs["course"]["id"]
       @time_updated = attrs["time_updated"]
       @updated_at = Time.at(@time_updated) if @time_updated
-      @student_ids = []
-      if attrs["students"]
-        attrs["students"].each do |student|
-          @student_ids.push student["id"]
-        end
-      end
+      @student_ids = attrs["students"] || []
     end
 
     def term
