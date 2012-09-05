@@ -100,7 +100,7 @@ Given /^(?:When )?I request a student with id ([a-f0-9]{24}) for that org$/ do |
 end
 
 Given /^(?:When )?I request students for an org with id ([a-f0-9]{24}) and a school with id ([a-f0-9]{24})$/ do |org_id, school_id|
-    @page = @client.students(org_id, school_id)
+    @page = @client.students(org_id, :school_id => school_id)
 end
 
 Given /^(?:When )?I request students for that school$/ do
