@@ -15,8 +15,8 @@ module LearnSprout
       @org_id = attrs["org_id"]
       self.id = @term_id = attrs["id"]
       @name = attrs["name"]
-      @end_date = attrs["end_date"] && Date.parse(attrs["end_date"])
-      @start_date = attrs["start_date"] && Date.parse(attrs["start_date"])
+      @end_date = attrs["end_date"] && Date.parse(attrs["end_date"]) if attrs["end_date"]
+      @start_date = attrs["start_date"] && Date.parse(attrs["start_date"]) if attrs["start_date"]
       @school_id = attrs["school_id"]
       @time_updated = attrs["time_updated"]
       @updated_at = Time.at(@time_updated) if @time_updated
@@ -24,6 +24,14 @@ module LearnSprout
       if attrs["sections"]
         @section_ids = attrs["sections"].collect { |section| section["id"] }
       end
+    end
+
+    def current?
+      return true if @start_date && !@end_date && Time.now >= @start_date
+      return true if @end_date && !@start_date && Time.now <= @end_date
+      return true if !@end_date && !@start_date
+      return true if Time.now >= @start_date && Time.now <= @end_date
+      false
     end
 
     def sections
