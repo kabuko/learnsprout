@@ -26,7 +26,7 @@ module LearnSprout
       @student_ids = []
       if attrs["students"]
         attrs["students"].each do |student|
-          if student["id"].is_a?(Hash)
+          if student.is_a?(Hash)
             @student_ids.push student["id"]
           else
             @student_ids.push student
