@@ -17,7 +17,7 @@ module LearnSprout
       @name = attrs["name"]
       @number = attrs["number"]
       @nces = Nces.new(attrs["nces"])
-      @phone = Phone.new(attrs["phone"])
+      @phone = Phone.new(attrs["phone"]) if attrs["phone"]
       @address = Address.new(attrs["address"])
       @time_updated = attrs["time_updated"]
       @updated_at = Time.at(@time_updated) if @time_updated
