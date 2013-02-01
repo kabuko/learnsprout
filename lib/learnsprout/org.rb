@@ -1,12 +1,12 @@
 module LearnSprout
   class Org
 
-    attr_accessor :org_id,
+    attr_accessor :id, :org_id,
                   :name
 
     def initialize(attrs={})
       @client = attrs["client"]
-      @org_id = attrs["id"]
+      self.id = @org_id = attrs["id"]
       @name = attrs["name"]
     end
 

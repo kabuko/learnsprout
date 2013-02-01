@@ -6,9 +6,9 @@ module LearnSprout
                   :home
 
     def initialize(attrs={})
-        @fax = attrs["fax"]
-        @main = attrs["main"]
-        @home = attrs["home"]
+      @fax = attrs["fax"]
+      @main = attrs["main"]
+      @home = attrs["home"]
     end
   end
 end 
